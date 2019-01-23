@@ -56,10 +56,11 @@
             echo '<div class="scrollmenu">';
             for($i = 0; $i < count($obj->{'list'});$i++) {
                 echo "<ul class='menu'>";
-                echo "<li>" .$obj -> list[$i] -> dt_txt ."</li>";
+                echo "<li>" . date("l j, g:i a", $obj -> list[$i] -> dt)."</li>";
                 echo "<li>".$obj -> list[$i] -> weather[0] -> main ."</li>";
                 echo "<li>" . $obj -> list[$i] -> weather[0] -> description . "</li>";
-                echo "<li>" . $obj -> list[$i] -> main -> temp . "</li>";
+                echo "<li>High: " . $obj -> list[$i] -> main -> temp_max . "°</li>";
+                echo "<li>Low: " . $obj -> list[$i] -> main -> temp_min . "°</li>";
                 echo "<li><img src='http://openweathermap.org/img/w/".$obj -> list[$i] -> weather[0] -> icon.".png'/></li>";
                 echo "</ul>";
             }

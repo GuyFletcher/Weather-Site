@@ -39,6 +39,7 @@ ul {
     overflow: auto;
     white-space: nowrap;
     background-color:#5d98f7;
+    margin:auto;
 }
 
 ul.menu {
