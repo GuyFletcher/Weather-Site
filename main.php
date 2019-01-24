@@ -2,6 +2,7 @@
 <head>
 <title>Basic Image Site</title>
 <link rel="stylesheet" href="style.css">
+<script type="text/javascript" src="tabScript.js"></script>
 </head>
 <body>
     <header id="row">
@@ -53,16 +54,41 @@
                 $obj = json_decode(result($url));
             }
             
+            
+            $date = "";
+            echo '<div class="tab">';
+            for($i = 0; $i < count($obj->{'list'});$i++) {
+                if($date == date("l", $obj -> list[$i] -> dt)) {
+                    
+                }
+                else {
+                    $date = date("l", $obj -> list[$i] -> dt);
+                    echo '<button class="tablinks" onclick="openDay(event, \''.$date.'\')">'.$date.'</button>';
+                }
+            }
+            echo '</div>';
+            
+            $date = "";
+            $prevDate = "";
             echo '<div class="scrollmenu">';
             for($i = 0; $i < count($obj->{'list'});$i++) {
-                echo "<ul class='menu'>";
+                if($date == date("l", $obj -> list[$i] -> dt)) {
+                    
+                }
+                else {
+                    $prevDate = $date;
+                    if($prevDate != "") {
+                        echo "</ul>";
+                    }
+                    $date = date("l", $obj -> list[$i] -> dt);
+                    echo "<ul id='".date("l", $obj -> list[$i] -> dt)."' class='tabcontent'>";
+                }
                 echo "<li>" . date("l j, g:i a", $obj -> list[$i] -> dt)."</li>";
                 echo "<li>".$obj -> list[$i] -> weather[0] -> main ."</li>";
                 echo "<li>" . $obj -> list[$i] -> weather[0] -> description . "</li>";
                 echo "<li>High: " . $obj -> list[$i] -> main -> temp_max . "°</li>";
                 echo "<li>Low: " . $obj -> list[$i] -> main -> temp_min . "°</li>";
                 echo "<li><img src='http://openweathermap.org/img/w/".$obj -> list[$i] -> weather[0] -> icon.".png'/></li>";
-                echo "</ul>";
             }
             echo "</div>";
             
