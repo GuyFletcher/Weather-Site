@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Basic Image Site</title>
+<title>Basic Weather Site</title>
 <link rel="stylesheet" href="style.css">
 <script type="text/javascript" src="tabScript.js"></script>
 </head>
